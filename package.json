@@ -1,0 +1,15 @@
+{
+  "name": "evoeve-web",
+  "private": true,
+  "scripts": {
+    "config": "node scripts/generate-supabase-config.js",
+    "db:setup": "node scripts/run-schema.js",
+    "predev": "npm run config",
+    "dev": "npx serve .",
+    "prestart": "npm run config",
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "pg": "^8.16.0"
+  }
+}

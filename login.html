@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | EVOEVE</title>
+    <link rel="icon" type="image/png" href="./webtop logo.png">
+  <link rel="stylesheet" href="./style2.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="index.html"><img src="./logo.png" alt="EVOEVE"></a>
+      <div class="header-actions">
+        <nav class="nav-bar">
+          <a href="index.html"><span class="nav-text">Home</span></a>
+          <a href="services.html"><span class="nav-text">Services</span></a>
+          <a href="gallery.html"><span class="nav-text">Gallery</span></a>
+          <a href="login.html" aria-current="page"><span class="nav-text">Admin</span></a>
+          <a class="btn btn-primary btn-nav mobile-call" href="tel:+971588512840"><span class="nav-text">Book a Call</span></a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section login-hero reveal" id="login">
+      <div class="container login-grid auth-login-grid">
+        <div class="login-panel hover-card">
+          <!-- Sign in -->
+          <div data-auth-view="signin">
+            <span class="eyebrow">Admin access</span>
+            <h1>Sign in to the dashboard</h1>
+            <p>View contact form inquiries, submission counts, and lead details.</p>
+            <form class="login-form" id="adminSignInForm">
+              <label for="adminEmail">Email</label>
+              <input type="email" id="adminEmail" name="email" placeholder="admin@evoeve.ae" autocomplete="email" required />
+              <label for="adminPassword">Password</label>
+              <input type="password" id="adminPassword" name="password" placeholder="Enter your password" autocomplete="current-password" required />
+              <button class="btn btn-primary" type="submit">Sign in</button>
+              <p class="auth-link-row">
+                <button type="button" class="auth-text-btn" data-show-view="forgot">Forgot password?</button>
+              </p>
+            </form>
+          </div>
+
+          <!-- Forgot password -->
+          <div class="hidden" data-auth-view="forgot">
+            <span class="eyebrow">Reset password</span>
+            <h1>Forgot your password?</h1>
+            <p>Enter your admin email. We will send a verification link to set a new password.</p>
+            <form class="login-form" id="adminForgotForm">
+              <label for="forgotEmail">Email</label>
+              <input type="email" id="forgotEmail" name="email" placeholder="admin@evoeve.ae" autocomplete="email" required />
+              <button class="btn btn-primary" type="submit">Send reset link</button>
+              <p class="auth-link-row">
+                <button type="button" class="auth-text-btn" data-show-view="signin">← Back to sign in</button>
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <div class="login-info reveal">
+          <div class="info-card hover-card">
+            <h2>Inquiry dashboard</h2>
+            <p>See every contact form submission with name, email, budget, and project details.</p>
+          </div>
+          <div class="info-card hover-card">
+            <h2>Secure access</h2>
+            <p>Only verified admin accounts can read inquiries. Password reset uses email verification.</p>
+          </div>
+          <div class="info-card hover-card">
+            <h2>Need help?</h2>
+            <p>Contact <a href="mailto:sales@evoeve.ae">sales@evoeve.ae</a> if you cannot access your account.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© 2026 EVOEVE. Admin login.</p>
+      <div class="footer-links">
+        <a href="index.html">Back to site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal, .hover-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach(item => observer.observe(item));
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const headerActions = document.querySelector('.header-actions');
+    if (navToggle && headerActions) {
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        headerActions.classList.toggle('open');
+      });
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth-helpers.js"></script>
+  <script src="js/admin-auth.js"></script>
+</body>
+</html>

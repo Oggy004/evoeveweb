@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | EVOEVE</title>
+  <link rel="icon" type="image/png" href="./webtop logo.png">
+  <link rel="stylesheet" href="./style2.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a class="brand" href="index.html"><img src="./logo.png" alt="EVOEVE"></a>
+      <div class="header-actions">
+        <nav class="nav-bar">
+          <a href="index.html"><span class="nav-text">Home</span></a>
+          <a href="index.html#contact"><span class="nav-text">Contact</span></a>
+          <a href="login.html"><span class="nav-text">Account</span></a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <section class="section admin-dashboard-section" id="adminDashboardSection">
+      <div class="container">
+        <div class="admin-dashboard-header">
+          <div>
+            <span class="eyebrow">Contact inquiries</span>
+            <h1>Inquiry dashboard</h1>
+            <p class="admin-signed-in-as" id="adminSignedInAs"></p>
+          </div>
+          <div class="admin-actions">
+            <button type="button" class="btn btn-secondary" id="adminRefreshBtn">Refresh</button>
+            <button type="button" class="btn btn-primary" id="adminSignOutBtn">Sign out</button>
+          </div>
+        </div>
+
+        <div class="admin-stats-grid">
+          <article class="admin-stat-card hover-card">
+            <span class="admin-stat-label">Total submissions</span>
+            <strong class="admin-stat-value" id="adminTotalCount">—</strong>
+          </article>
+          <article class="admin-stat-card hover-card">
+            <span class="admin-stat-label">Showing</span>
+            <strong class="admin-stat-value" id="adminShowingCount">—</strong>
+          </article>
+        </div>
+
+        <p class="form-message hidden" id="adminDashboardMessage"></p>
+
+        <div class="admin-table-wrap hover-card">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Country</th>
+                <th>Company</th>
+                <th>Type</th>
+                <th>Budget</th>
+                <th>Details</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminInquiriesBody">
+              <tr>
+                <td colspan="10" class="admin-empty">Loading…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© 2026 EVOEVE. Admin dashboard.</p>
+      <div class="footer-links">
+        <a href="index.html">Back to site</a>
+        <a href="login.html">Admin login</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const headerActions = document.querySelector('.header-actions');
+    if (navToggle && headerActions) {
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        headerActions.classList.toggle('open');
+      });
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
