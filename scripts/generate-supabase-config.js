@@ -39,14 +39,16 @@ function escapeJsString(value) {
     .replace(/\n/g, "\\n");
 }
 
-const env = parseEnvFile(envPath);
-const url = env.SUPABASE_URL || "";
-const anonKey = env.SUPABASE_ANON_KEY || "";
+const fileEnv = parseEnvFile(envPath);
+const env = { ...process.env, ...fileEnv };
+const url = env.SUPABASE_URL?.trim() || "";
+const anonKey = env.SUPABASE_ANON_KEY?.trim() || "";
 
 if (!fs.existsSync(envPath)) {
-  console.warn("No .env file found. Copy .env.example to .env and add your keys.");
-} else if (!url || !anonKey) {
-  console.warn("SUPABASE_URL or SUPABASE_ANON_KEY is missing in .env.");
+  console.warn("No .env file found. Using process.env values if provided.");
+}
+if (!url || !anonKey) {
+  console.warn("SUPABASE_URL or SUPABASE_ANON_KEY is missing in .env or process.env.");
 }
 
 const output = `/* AUTO-GENERATED — do not edit. Edit .env and run: npm run config */

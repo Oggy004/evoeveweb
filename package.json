@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "config": "node scripts/generate-supabase-config.js",
+    "build": "npm run config",
     "db:setup": "node scripts/run-schema.js",
     "predev": "npm run config",
     "dev": "npx serve .",
